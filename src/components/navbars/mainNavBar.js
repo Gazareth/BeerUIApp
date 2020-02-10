@@ -16,7 +16,7 @@ const MainNavBar = () => {
         <Navbar.Brand href="#home">
           <img
             alt=""
-            src={require("./../../beericon.png")}
+            src={require("../../beericon.png")}
             width="30"
             height="30"
             className="d-inline-block align-top"

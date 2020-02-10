@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { bool, func, number } from "prop-types";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -7,13 +7,16 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/Inputgroup";
 import Button from "react-bootstrap/Button";
 
+import { LoadingContext } from "../contexts/loadingContext";
+
 /******************
  * BeerNavBar -- Displays a lesser nav bar for the beer product page, showing:
  * - introductory header "Available Beers"
  * - current page number (beers are paginated)
  * - search input box
  ***********/
-const BeerNavBar = ({ isLoading, setFilter, page }) => {
+const BeerNavBar = ({ setFilter, page }) => {
+  const isLoading = useContext(LoadingContext);
   var inputTimeout;
 
   const parseInput = e => {
@@ -55,7 +58,6 @@ const BeerNavBar = ({ isLoading, setFilter, page }) => {
 };
 
 BeerNavBar.propTypes = {
-  isLoading: bool,
   setFilter: func,
   page: number
 };

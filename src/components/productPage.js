@@ -5,32 +5,25 @@ import ProductModal from "./productModal";
 import BeerNavBar from "./navbars/beerNavBar";
 import ProductList from "./productList";
 import PageNavBar from "./navbars/pageNavBar";
+import { LoadingContext } from "./contexts/loadingContext";
 
 /******************
  * ProductPage -- Sets up the basic elements required for a page of products
  ***********/
-export const ProductPage = ({
-  isLoading,
-  setPage,
-  setFilter,
-  pages,
-  page,
-  data
-}) => {
+export const ProductPage = ({ setPage, setFilter, pages, page, data }) => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
     <div>
       <ProductModal {...{ modalShow, setModalShow }} />
-      <BeerNavBar {...{ isLoading, page, setFilter }} />
-      <ProductList {...{ isLoading, setModalShow, data }} />
-      <PageNavBar {...{ isLoading, setPage, pages, page }} />
+      <BeerNavBar {...{ page, setFilter }} />
+      <ProductList {...{ setModalShow, data }} />
+      <PageNavBar {...{ setPage, pages, page }} />
     </div>
   );
 };
 
 ProductPage.propTypes = {
-  isLoading: bool,
   setPage: func,
   setFilter: func,
   pages: number,

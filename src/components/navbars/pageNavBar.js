@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { bool, func, number } from "prop-types";
 
 import Nav from "react-bootstrap/Nav";
 import Pagination from "react-bootstrap/Pagination";
 
+import { LoadingContext } from "../contexts/loadingContext";
+
 /******************
  * PageNavBar -- Displays nav bar with a centred set of pagination buttons, also uses functions tied to hooks from parents
  ***********/
-const PageNavBar = ({ isLoading, setPage, page, pages }) => {
+const PageNavBar = ({ setPage, page, pages }) => {
+  const isLoading = useContext(LoadingContext);
+
   return (
     <Nav className="justify-content-center align-items-end">
       <Pagination>
@@ -32,7 +36,6 @@ const PageNavBar = ({ isLoading, setPage, page, pages }) => {
 };
 
 PageNavBar.propTypes = {
-  isLoading: bool,
   setPage: func,
   page: number,
   pages: number

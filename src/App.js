@@ -6,6 +6,7 @@ import { useFetchProducts } from "./hooks/fetchProducts";
 
 import MainNavBar from "./components/navbars/mainNavBar";
 import ProductPage from "./components/productPage";
+import { LoadingContext } from "./components/contexts/loadingContext";
 
 export const App = () => {
   const perPage = 15;
@@ -14,14 +15,12 @@ export const App = () => {
   const [isLoading, pages, data] = useFetchProducts(perPage, page, filter);
 
   return (
-    <div>
+    <LoadingContext.Provider value={isLoading}>
       <MainNavBar />
       <Container style={{ backgroundColor: "#F4F4F4" }}>
-        <ProductPage
-          {...{ isLoading, setPage, setFilter, pages, page, data }}
-        />
+        <ProductPage {...{ setPage, setFilter, pages, page, data }} />
       </Container>
-    </div>
+    </LoadingContext.Provider>
   );
 };
 
