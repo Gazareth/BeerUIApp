@@ -1,12 +1,18 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
+import { bool, func, number } from "prop-types";
 
 import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/Inputgroup";
 import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
 
+/******************
+ * BeerNavBar -- Displays a lesser nav bar for the beer product page, showing:
+ * - introductory header "Available Beers"
+ * - current page number (beers are paginated)
+ * - search input box
+ ***********/
 const BeerNavBar = ({ isLoading, setFilter, page }) => {
   var inputTimeout;
 
@@ -46,6 +52,12 @@ const BeerNavBar = ({ isLoading, setFilter, page }) => {
       </Form>
     </Navbar>
   );
+};
+
+BeerNavBar.propTypes = {
+  isLoading: bool,
+  setFilter: func,
+  page: number
 };
 
 export default BeerNavBar;

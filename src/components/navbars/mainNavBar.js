@@ -1,8 +1,14 @@
 import React from "react";
+
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
+/******************
+ * MainNavBar -- Main website navigation bar
+ * - Company name & logo (brand)
+ * - links to the main pages
+ ***********/
 const MainNavBar = () => {
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
@@ -18,9 +24,11 @@ const MainNavBar = () => {
           Beer UI App
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#products">Products</Nav.Link>
-          <Nav.Link href="#about">About</Nav.Link>
+          {["home", "products", "about"].map((str, i) => (
+            <Nav.Link key={i} href={"#" + str} className="text-capitalize">
+              {str}
+            </Nav.Link>
+          ))}
         </Nav>
       </Container>
     </Navbar>

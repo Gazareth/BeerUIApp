@@ -1,5 +1,8 @@
 import { useHttp } from "./http";
 
+/******************
+ * useFetchProducts -- Hook which builds the URL for retrieving the products based on page number
+ ***********/
 export const useFetchProducts = (perpage, page, filter) => {
   // filter params should be "search, filterName, filterParam"
   const search =
@@ -17,8 +20,6 @@ export const useFetchProducts = (perpage, page, filter) => {
   );
 
   const pages = Math.ceil(data.length / perpage);
-
-  console.log("Setting loading ", isLoading);
 
   return [isLoading, pages, data];
 };

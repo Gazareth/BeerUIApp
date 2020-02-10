@@ -1,8 +1,12 @@
 import React from "react";
+import { bool, func, number } from "prop-types";
 
 import Nav from "react-bootstrap/Nav";
 import Pagination from "react-bootstrap/Pagination";
 
+/******************
+ * PageNavBar -- Displays nav bar with a centred set of pagination buttons, also uses functions tied to hooks from parents
+ ***********/
 const PageNavBar = ({ isLoading, setPage, page, pages }) => {
   return (
     <Nav className="justify-content-center align-items-end">
@@ -25,6 +29,13 @@ const PageNavBar = ({ isLoading, setPage, page, pages }) => {
       </Pagination>
     </Nav>
   );
+};
+
+PageNavBar.propTypes = {
+  isLoading: bool,
+  setPage: func,
+  page: number,
+  pages: number
 };
 
 export default PageNavBar;
