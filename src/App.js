@@ -10,9 +10,13 @@ import { LoadingContext } from "./components/contexts/loadingContext";
 
 export const App = () => {
   const perPage = 15;
+  const [pages, setPages] = useState(1);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState({});
-  const [isLoading, pages, data] = useFetchProducts(perPage, page, filter);
+
+  const [isLoading, newPages, data] = useFetchProducts(perPage, page, filter);
+
+  if (page > pages) setPages(page); //have to store pages cause total can't be found
 
   return (
     <LoadingContext.Provider value={isLoading}>

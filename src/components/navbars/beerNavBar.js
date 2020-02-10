@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { bool, func, number } from "prop-types";
+import { func, number } from "prop-types";
 
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/Inputgroup";
-import Button from "react-bootstrap/Button";
 
 import { LoadingContext } from "../contexts/loadingContext";
 
@@ -20,7 +19,6 @@ const BeerNavBar = ({ setFilter, page }) => {
   var inputTimeout;
 
   const parseInput = e => {
-    console.log("Parsing input.", e.target.value);
     const safeValue = e.target.value
       .replace(/[^0-9a-z-A-Z ]/g, "")
       .replace(/ +/, " ");
@@ -33,18 +31,11 @@ const BeerNavBar = ({ setFilter, page }) => {
     <Navbar className="justify-content-between">
       <h2 className="display-6">Available Beers</h2>
       <h5 className="text-muted">
-        <span>• {isLoading ? "-" : page} •</span>
+        <span>{isLoading ? "•" : page} </span>
       </h5>
       {/*<Nav.Link className="h6 text-muted"</Nav.Link>*/}
       <Form inline>
         <InputGroup className="mb-3">
-          <InputGroup.Prepend>
-            <Button disabled variant="outline-secondary">
-              <span role="img" aria-label="Search">
-                {isLoading ? "🕑" : "⌨"}
-              </span>
-            </Button>
-          </InputGroup.Prepend>
           <FormControl
             type="text"
             placeholder="Search"

@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import { bool, func, number, arrayOf, object } from "prop-types";
+import { func, number, arrayOf, object } from "prop-types";
 
-import ProductModal from "./productModal";
+import BeerModal from "./beerModal";
 import BeerNavBar from "./navbars/beerNavBar";
 import ProductList from "./productList";
 import PageNavBar from "./navbars/pageNavBar";
-import { LoadingContext } from "./contexts/loadingContext";
+import { ModalContext } from "./contexts/modalContext";
 
 /******************
  * ProductPage -- Sets up the basic elements required for a page of products
  ***********/
-export const ProductPage = ({ setPage, setFilter, pages, page, data }) => {
-  const [modalShow, setModalShow] = useState(false);
+const ProductPage = ({ setPage, setFilter, pages, page, data }) => {
+  const [productModal, setProductModal] = useState({
+    show: false,
+    productInfo: {}
+  });
 
   return (
-    <div>
-      <ProductModal {...{ modalShow, setModalShow }} />
+    <ModalContext.Provider value={{ productModal, setProductModal }}>
+      <BeerModal />
       <BeerNavBar {...{ page, setFilter }} />
-      <ProductList {...{ setModalShow, data }} />
+      <ProductList {...{ data }} />
       <PageNavBar {...{ setPage, pages, page }} />
-    </div>
+    </ModalContext.Provider>
   );
 };
 
@@ -30,4 +33,5 @@ ProductPage.propTypes = {
   page: number,
   data: arrayOf(object)
 };
+
 export default ProductPage;

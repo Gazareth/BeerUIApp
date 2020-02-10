@@ -1,33 +1,43 @@
 import { useEffect, useState } from "react";
 
-export const useIngredients = ingredients => {
-  const [fullList, setFullList] = useState([]);
-  const [shortList, setShortList] = useState("");
+export const useIngredients = data => {
+  const [processedData, setProcessedData] = useState([]);
+
+  //const ingredients = data.map(datum => datum.ingredients);
 
   useEffect(() => {
-    // INGREDIENTS
-    // combine ingredients from all categories into one array and select 3 randomly
-    const fullIngredients = Object.keys(ingredients).length
-      ? ingredients.hops
-          .concat(ingredients.malt)
-          .concat({ name: ingredients.yeast })
-      : [];
-    setFullList(fullIngredients);
+    const processedProduct = product => {
+      const ingredients = product.ingredients;
+      // flatten ingredient names from all categories (keys) into one array
+      const ingredients_all = Object.keys(ingredients)
+        .map(key =>
+          Array.isArray(ingredients[key])
+            ? ingredients[key].map(ing => ing.name)
+            : ingredients[key]
+        )
+        .flat();
 
-    const numToDisplay = fullIngredients.length ? 3 : 0;
-    setShortList(
-      new Array(numToDisplay)
+      //Select 3 random ingredient names, join into one string
+      const numToDisplay = ingredients_all.length ? 3 : 0;
+      const ingredients_short = new Array(numToDisplay)
         .fill()
         .map(
           () =>
-            fullIngredients[
-              Math.round(Math.random() * (fullIngredients.length - 1))
+            ingredients_all[
+              Math.round(Math.random() * (ingredients_all.length - 1))
             ]
         )
-        .map(ingredient => ingredient.name)
-        .join(", ")
-    );
-  }, []);
+        .join(", ");
 
-  return [shortList, fullList];
+      return {
+        ...product,
+        ingredients_all,
+        ingredients_short
+      };
+    };
+
+    setProcessedData(data.map(datum => processedProduct(datum)));
+  }, [data]);
+
+  return processedData;
 };

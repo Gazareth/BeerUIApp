@@ -1,40 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { shape, object, string, number } from "prop-types";
 
-import ProductCard from "./productCard";
+import ProductCard from "./generic/productCard";
+import BeerAbvVol from "./specific/beerAbvVol";
 
-import { useIngredients } from "../hooks/ingredients";
+import { ModalContext } from "./contexts/modalContext";
 
 /******************
- * BeerCard -- Displays relevant beer info in a concise format:
+ * BeerCard -- Prepares  relevant beer info to display on a productCard:
  * - Name (header)
  * - Image
  * - Detail #1 - ABV, VOL
  * - Detail #2 - Ingredients (shortlist)
  ***********/
 const BeerCard = ({ productInfo }) => {
-  const { image_url, name, abv, volume, ingredients } = productInfo;
+  const { image_url, name, abv, volume, ingredients_short } = productInfo;
+  const { setProductModal } = useContext(ModalContext);
+  const setModalShow = show => setProductModal({ productInfo, show });
 
   //ABV, VOL
-  const abvJSX = <span className="font-weight-bold">{abv}%</span>;
-  const volJSX = (
-    <span className="font-weight-bold">
-      {volume.value}
-      {volume.unit.charAt(0).toUpperCase()}
-    </span>
-  );
-  const detail1 = (
-    <>
-      ABV {abvJSX} Size {volJSX}
-    </>
-  );
-
-  //INGREDIENTS (display only 3)
-  const [shortIngList, fullIngList] = useIngredients(ingredients);
+  const detail1 = <BeerAbvVol {...{ abv, volume }} />;
 
   return (
     <ProductCard
-      {...{ header: name, image_url, detail1, detail2: shortIngList }}
+      {...{
+        setModalShow,
+        header: name,
+        image_url,
+        detail1,
+        detail2: ingredients_short
+      }}
     />
   );
 };
@@ -45,7 +40,7 @@ BeerCard.propTypes = {
     name: string,
     abv: number,
     volume: object,
-    ingredients: object
+    ingredients_short: string
   })
 };
 export default BeerCard;

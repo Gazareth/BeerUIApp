@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { bool, func, number } from "prop-types";
+import { func, number } from "prop-types";
 
 import Nav from "react-bootstrap/Nav";
 import Pagination from "react-bootstrap/Pagination";
@@ -9,8 +9,15 @@ import { LoadingContext } from "../contexts/loadingContext";
 /******************
  * PageNavBar -- Displays nav bar with a centred set of pagination buttons, also uses functions tied to hooks from parents
  ***********/
-const PageNavBar = ({ setPage, page, pages }) => {
+const PageNavBar = ({ setPage, pages, page }) => {
   const isLoading = useContext(LoadingContext);
+
+  const maxPages = pages > 1 ? pages : page;
+  var numbersArr = Array.from(Array(maxPages).keys()).map(num => num + 1);
+
+  if (page > 4) {
+    numbersArr.splice(1, page - 3, "...");
+  }
 
   return (
     <Nav className="justify-content-center align-items-end">
@@ -19,16 +26,20 @@ const PageNavBar = ({ setPage, page, pages }) => {
           <Pagination.First onClick={() => setPage(1)} disabled={isLoading} />
         ) : null}
         <Pagination.Prev onClick={() => setPage(page - 1)} />{" "}
-        {Array.from(Array(page).keys()).map(pageId => (
-          <Pagination.Item
-            key={pageId}
-            active={pageId + 1 === page}
-            disabled={isLoading}
-            onClick={() => setPage(pageId + 1)}
-          >
-            {pageId + 1}
-          </Pagination.Item>
-        ))}
+        {numbersArr.map((pageNum, i) =>
+          pageNum === "..." ? (
+            <Pagination.Ellipsis />
+          ) : (
+            <Pagination.Item
+              key={i}
+              active={pageNum === page}
+              disabled={isLoading}
+              onClick={() => setPage(pageNum)}
+            >
+              {pageNum}
+            </Pagination.Item>
+          )
+        )}
         <Pagination.Next onClick={() => setPage(page + 1)} />
       </Pagination>
     </Nav>
@@ -37,8 +48,8 @@ const PageNavBar = ({ setPage, page, pages }) => {
 
 PageNavBar.propTypes = {
   setPage: func,
-  page: number,
-  pages: number
+  pages: number,
+  page: number
 };
 
 export default PageNavBar;

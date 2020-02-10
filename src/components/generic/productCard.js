@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { string, element, oneOfType } from "prop-types";
+import { func, string, element, oneOfType } from "prop-types";
 
 import Card from "react-bootstrap/Card";
 
@@ -10,7 +10,7 @@ import Card from "react-bootstrap/Card";
  * - Detail #1
  * - Detail #2
  ***********/
-const ProductCard = ({ header, image_url, detail1, detail2 }) => {
+const ProductCard = ({ setModalShow, header, image_url, detail1, detail2 }) => {
   const [isHover, setIsHover] = useState(false);
 
   //Truncate second details section for cards with longer headers, by changing css
@@ -29,6 +29,9 @@ const ProductCard = ({ header, image_url, detail1, detail2 }) => {
       className="my-4 col-sm-12 col-md-6 col-lg-4 col-xl-3"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      onClick={() => {
+        setModalShow(true);
+      }}
     >
       <Card
         className="h-100 bg-light"
@@ -46,7 +49,7 @@ const ProductCard = ({ header, image_url, detail1, detail2 }) => {
             padding: "3vh",
             height: "20vh",
             objectFit: "scale-down",
-            backgroundColor: "#FFF"
+            backgroundColor: "#FCFCFC"
           }}
         />
         <Card.Body>
@@ -61,6 +64,7 @@ const ProductCard = ({ header, image_url, detail1, detail2 }) => {
 };
 
 ProductCard.propTypes = {
+  setModalShow: func,
   header: string,
   image_url: string,
   detail1: oneOfType([string, element]),

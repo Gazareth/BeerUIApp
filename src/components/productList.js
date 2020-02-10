@@ -9,7 +9,7 @@ import { LoadingContext } from "./contexts/loadingContext";
 /******************
  * ProductList -- Maps an array of product data onto product cards
  ***********/
-export const ProductList = ({ data }) => {
+const ProductList = ({ data }) => {
   const isLoading = useContext(LoadingContext);
 
   const loadingPlaceholder = {
@@ -38,4 +38,5 @@ export const ProductList = ({ data }) => {
 ProductList.propTypes = {
   data: arrayOf(object)
 };
+
 export default ProductList;

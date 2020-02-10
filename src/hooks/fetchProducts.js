@@ -1,4 +1,5 @@
 import { useHttp } from "./http";
+import { useIngredients } from "./ingredients";
 
 /******************
  * useFetchProducts -- Hook which builds the URL for retrieving the products based on page number
@@ -19,7 +20,10 @@ export const useFetchProducts = (perpage, page, filter) => {
     [perpage, page, params]
   );
 
+  //INGREDIENTS (shortList: display only 3, fullList: normalised array of all ingredients)
+  const processedData = useIngredients(data);
+
   const pages = Math.ceil(data.length / perpage);
 
-  return [isLoading, pages, data];
+  return [isLoading, pages, processedData];
 };
