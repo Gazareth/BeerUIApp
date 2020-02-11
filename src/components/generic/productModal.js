@@ -26,6 +26,7 @@ const ProductModal = ({
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      scrollable
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -34,7 +35,7 @@ const ProductModal = ({
       </Modal.Header>
       <Modal.Body>
         <Container>
-          <Row className="show-grid">
+          <Row className="show-grid my-4">
             <Col xs={12} md={5} className="d-flex justify-content-center">
               <img
                 src={image_url}

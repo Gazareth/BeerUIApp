@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { func, string, element, oneOfType } from "prop-types";
 
+import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 
 /******************
@@ -25,8 +26,11 @@ const ProductCard = ({ setModalShow, header, image_url, detail1, detail2 }) => {
       : {};
 
   return (
-    <div
-      className="my-4 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+    <Col
+      xs={6}
+      md={4}
+      xl={3}
+      className="my-4"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       onClick={() => {
@@ -59,7 +63,7 @@ const ProductCard = ({ setModalShow, header, image_url, detail1, detail2 }) => {
           </Card.Text>
         </Card.Body>
       </Card>
-    </div>
+    </Col>
   );
 };
 
