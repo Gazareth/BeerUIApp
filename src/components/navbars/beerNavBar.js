@@ -32,10 +32,10 @@ const BeerNavBar = ({ setFilter, page }) => {
 
   return (
     <Navbar className="justify-content-between">
-      <h2 className="display-6">Available Beers</h2>
-      <h5 className="text-muted">
+      <h2 className="lead">Available Beers</h2>
+      <h2 className="lead">
         <span>{isLoading ? "•" : page} </span>
-      </h5>
+      </h2>
       {/*<Nav.Link className="h6 text-muted"</Nav.Link>*/}
       <Form inline>
         <InputGroup className="mb-3">

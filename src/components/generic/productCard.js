@@ -38,7 +38,7 @@ const ProductCard = ({ setModalShow, header, image_url, detail1, detail2 }) => {
       }}
     >
       <Card
-        className="h-100 bg-light"
+        className={"h-100 bg-light " + (isHover ? "shadow" : "shadow-sm")}
         border={isHover ? "secondary" : ""}
         style={{ cursor: "pointer" }}
       >
@@ -48,7 +48,7 @@ const ProductCard = ({ setModalShow, header, image_url, detail1, detail2 }) => {
         <Card.Img
           variant="top"
           src={image_url}
-          alt={header + " image"}
+          alt={header}
           style={{
             padding: "3vh",
             height: "20vh",

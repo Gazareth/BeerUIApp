@@ -10,10 +10,12 @@ const BeerAbvVol = ({ abv, volume }) => {
       {volume.unit.charAt(0).toUpperCase()}
     </span>
   );
-  return (
+  return volume.value && volume.value > 0 ? (
     <>
       ABV {abvJSX} Size {volJSX}
     </>
+  ) : (
+    <></>
   );
 };
 
