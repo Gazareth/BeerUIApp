@@ -25,10 +25,10 @@ const PageNavBar = ({ setPage, pages, page }) => {
         {page > 1 ? (
           <Pagination.First onClick={() => setPage(1)} disabled={isLoading} />
         ) : null}
-        <Pagination.Prev onClick={() => setPage(page - 1)} />{" "}
+        <Pagination.Prev onClick={() => setPage(page > 1 ? page - 1 : page)} />{" "}
         {numbersArr.map((pageNum, i) =>
           pageNum === "..." ? (
-            <Pagination.Ellipsis />
+            <Pagination.Ellipsis key={i} />
           ) : (
             <Pagination.Item
               key={i}

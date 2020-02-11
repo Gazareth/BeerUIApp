@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { noDataPlaceholder } from "../util/dataPlaceholders";
 
 /******************
  * useHttp -- Hook which reads from given URL and returns the data as json
@@ -17,15 +18,15 @@ const useHttp = url => {
         return response.json();
       })
       .then(data => {
-        setTimeout(() => {
-          setIsLoading(false);
-          setFetchedData(data);
-        }, 1200);
+        setIsLoading(false);
+        setFetchedData(data.length ? data : [noDataPlaceholder]);
       })
       .catch(err => {
         setIsLoading(false);
       });
-  }, dependencies);
+  }, [url]);
 
   return [isLoading, data];
 };
+
+export default useHttp;

@@ -1,10 +1,10 @@
-import { useHttp } from "./http";
-import { useIngredients } from "./ingredients";
+import useHttp from "./http";
+import useIngredients from "./ingredients";
 
 /******************
  * useFetchProducts -- Hook which builds the URL for retrieving the products based on page number
  ***********/
-export const useFetchProducts = (perpage, page, filter) => {
+const useFetchProducts = (perpage, page, filter) => {
   // filter params should be "search, filterName, filterParam"
   const search =
     filter.beerName && filter.beerName.length

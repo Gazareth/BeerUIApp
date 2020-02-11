@@ -2,7 +2,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 
 import { useState } from "react";
-import { useFetchProducts } from "./hooks/fetchProducts";
+import useFetchProducts from "./hooks/fetchProducts";
+import useManagePages from "./hooks/managePages";
 
 import MainNavBar from "./components/navbars/mainNavBar";
 import ProductPage from "./components/productPage";
@@ -15,9 +16,8 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState({});
 
-  const [isLoading, newPages, data] = useFetchProducts(perPage, page, filter);
-
-  if (page > pages) setPages(page); //have to store pages cause total can't be found
+  useManagePages(setAllPages, setPages, setPage, filter, allPages, pages, page);
+  const [isLoading, data] = useFetchProducts(perPage, page, filter);
 
   return (
     <LoadingContext.Provider value={isLoading}>

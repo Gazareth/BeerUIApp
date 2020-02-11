@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-export const useIngredients = data => {
+/******************
+ * useIngredients -- Hook which parses and updates productinformation, creating two lists of ingredients and adding them to the product's data object
+ ***********/
+const useIngredients = data => {
   const [processedData, setProcessedData] = useState([]);
-
-  //const ingredients = data.map(datum => datum.ingredients);
 
   useEffect(() => {
     const processedProduct = product => {
@@ -41,3 +42,5 @@ export const useIngredients = data => {
 
   return processedData;
 };
+
+export default useIngredients;
