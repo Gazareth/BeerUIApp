@@ -16,14 +16,13 @@ export const useFetchProducts = (perpage, page, filter) => {
     .join("&");
 
   const [isLoading, data] = useHttp(
-    "https://api.punkapi.com/v2/beers?" + params,
-    [perpage, page, params]
+    process.env.REACT_APP_BEER_API_URL + "?" + params
   );
 
   //INGREDIENTS (shortList: display only 3, fullList: normalised array of all ingredients)
   const processedData = useIngredients(data);
 
-  const pages = Math.ceil(data.length / perpage);
-
-  return [isLoading, pages, processedData];
+  return [isLoading, processedData];
 };
+
+export default useFetchProducts;

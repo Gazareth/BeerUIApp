@@ -24,7 +24,10 @@ const BeerNavBar = ({ setFilter, page }) => {
       .replace(/ +/, " ");
     const filter = { beerName: safeValue };
     clearTimeout(inputTimeout);
-    inputTimeout = setTimeout(() => setFilter(filter), 300);
+    inputTimeout = setTimeout(
+      () => setFilter(filter),
+      process.env.REACT_APP_SEARCH_DELAY
+    );
   };
 
   return (

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
-export const useHttp = (url, dependencies) => {
+/******************
+ * useHttp -- Hook which reads from given URL and returns the data as json
+ ***********/
+const useHttp = url => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setFetchedData] = useState([]);
 

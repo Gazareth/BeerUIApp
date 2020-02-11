@@ -9,8 +9,9 @@ import ProductPage from "./components/productPage";
 import { LoadingContext } from "./components/contexts/loadingContext";
 
 export const App = () => {
-  const perPage = 15;
-  const [pages, setPages] = useState(1);
+  const perPage = process.env.REACT_APP_BEERS_PER_PAGE;
+  const [allPages, setAllPages] = useState({}); //keep track of max page numbers per filter
+  const [pages, setPages] = useState(1); //
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState({});
 
