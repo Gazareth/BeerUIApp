@@ -9,6 +9,7 @@ const useHttp = url => {
   const [data, setFetchedData] = useState([]);
 
   useEffect(() => {
+    if (isLoading) return [isLoading, data];
     setIsLoading(true);
     fetch(url)
       .then(response => {
@@ -18,8 +19,10 @@ const useHttp = url => {
         return response.json();
       })
       .then(data => {
-        setIsLoading(false);
-        setFetchedData(data.length ? data : [noDataPlaceholder]);
+        setTimeout(() => {
+          setIsLoading(false);
+          setFetchedData(data.length ? data : [noDataPlaceholder]);
+        }, process.env.REACT_APP_REQUEST_DELAY);
       })
       .catch(err => {
         setIsLoading(false);
