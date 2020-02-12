@@ -33,6 +33,10 @@ const BeerNavBar = ({ setFilter, page }) => {
     );
   };
 
+  const preventSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Navbar className="justify-content-between">
       <h2 className="lead">{input.length > 0 ? "Search Results: \""+input+"\"" : "Available Beers"}</h2>
@@ -40,7 +44,7 @@ const BeerNavBar = ({ setFilter, page }) => {
         <span>{isLoading ? "•" : page} </span>
       </h2>
       {/*<Nav.Link className="h6 text-muted"</Nav.Link>*/}
-      <Form inline>
+      <Form inline onSubmit={preventSubmit}>
         <InputGroup className="mb-3">
           <FormControl
             type="text"
