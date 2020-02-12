@@ -17,29 +17,24 @@ import { LoadingContext } from "../contexts/loadingContext";
 const BeerNavBar = ({ setFilter, page }) => {
   const isLoading = useContext(LoadingContext);
   const [input, setInput] = useState("");
-  var inputTimeout;
-  var parsedInput = "";
+  const [parsedInput, setParsedInput] = useState("");
 
   const parseInput = e => {
     const safeValue = e.target.value
       .replace(/[^0-9a-z-A-Z ]/g, "")
       .replace(/ +/, " ");
-    const filter = { beerName: safeValue };
-    setInput(filter.beerName);
-    clearTimeout(inputTimeout);
-    inputTimeout = setTimeout(
-      () => setFilter(filter),
-      process.env.REACT_APP_SEARCH_DELAY
-    );
+      setInput(safeValue)
   };
 
   const preventSubmit = (e) => {
     e.preventDefault();
+    setFilter({ beerName: input });
+    setParsedInput(input);
   };
 
   return (
     <Navbar className="justify-content-between">
-      <h2 className="lead">{input.length > 0 ? "Search Results: \""+input+"\"" : "Available Beers"}</h2>
+      <h2 className="lead">{parsedInput.length > 0 ? "Search Results: \""+parsedInput+"\"" : "Available Beers"}</h2>
       <h2 className="lead">
         <span>{isLoading ? "•" : page} </span>
       </h2>
@@ -51,6 +46,7 @@ const BeerNavBar = ({ setFilter, page }) => {
             placeholder="Search"
             className=" mr-sm-2"
             onChange={e => parseInput(e)}
+            disabled={isLoading}
           />
         </InputGroup>
       </Form>
