@@ -42,7 +42,7 @@ const ProductModal = ({
                 alt={header + " image"}
                 style={{
                   padding: "3vh",
-                  height: "20vh",
+                  height: "40vh",
                   objectFit: "scale-down",
                   backgroundColor: "#FFF"
                 }}
