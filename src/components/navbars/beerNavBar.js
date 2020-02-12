@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { func, number } from "prop-types";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -16,13 +16,16 @@ import { LoadingContext } from "../contexts/loadingContext";
  ***********/
 const BeerNavBar = ({ setFilter, page }) => {
   const isLoading = useContext(LoadingContext);
+  const [input, setInput] = useState("");
   var inputTimeout;
+  var parsedInput = "";
 
   const parseInput = e => {
     const safeValue = e.target.value
       .replace(/[^0-9a-z-A-Z ]/g, "")
       .replace(/ +/, " ");
     const filter = { beerName: safeValue };
+    setInput(filter.beerName);
     clearTimeout(inputTimeout);
     inputTimeout = setTimeout(
       () => setFilter(filter),
@@ -32,7 +35,7 @@ const BeerNavBar = ({ setFilter, page }) => {
 
   return (
     <Navbar className="justify-content-between">
-      <h2 className="lead">Available Beers</h2>
+      <h2 className="lead">{input.length > 0 ? "Search Results: \""+input+"\"" : "Available Beers"}</h2>
       <h2 className="lead">
         <span>{isLoading ? "•" : page} </span>
       </h2>
