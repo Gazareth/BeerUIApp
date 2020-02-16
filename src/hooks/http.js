@@ -26,6 +26,7 @@ const useHttp = url => {
         })
         .catch(err => {
           setIsLoading(false);
+          setFetchedData([]);
         });
     }
   }, [url]);
