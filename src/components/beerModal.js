@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 
-import ProductModal from "./generic/productModal";
-import BeerAbvVolume from "./specific/beerAbvVol";
-import { ModalContext } from "./contexts/modalContext";
+import ProductModal from "./generic/ProductModal";
+import BeerAbvVolume from "./specific/BeerAbvVol";
+import ModalContext from "./contexts/ModalContext";
 
 const BeerModal = () => {
   const { productModal, setProductModal } = useContext(ModalContext);
   const { show, productInfo } = productModal;
-  const setModalShow = show => setProductModal({ ...productModal, show });
+  const setModalShow = toShow =>
+    setProductModal({ ...productModal, show: toShow });
 
   const {
     name,

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { func, number, arrayOf, object } from "prop-types";
 
-import BeerModal from "./beerModal";
-import BeerNavBar from "./navbars/beerNavBar";
-import ProductList from "./productList";
-import PageNavBar from "./navbars/pageNavBar";
-import { ModalContext } from "./contexts/modalContext";
+import BeerModal from "./BeerModal";
+import BeerNavBar from "./navbars/BeerNavBar";
+import ProductList from "./ProductList";
+import PageNavBar from "./navbars/PageNavBar";
+import ModalContext from "./contexts/ModalContext";
 
 /******************
  * ProductPage -- Sets up the basic elements required for a page of products

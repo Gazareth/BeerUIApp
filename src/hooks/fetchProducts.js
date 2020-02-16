@@ -1,5 +1,5 @@
-import useHttp from "./http";
-import useIngredients from "./ingredients";
+import useHttp from "./Http";
+import useIngredients from "./Ingredients";
 
 /******************
  * useFetchProducts -- Hook which builds the URL for retrieving the products based on page number

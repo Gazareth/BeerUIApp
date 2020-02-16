@@ -1,3 +1,5 @@
 import { createContext } from "react";
 
-export const LoadingContext = createContext();
+const LoadingContext = createContext();
+
+export default LoadingContext;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { noDataPlaceholder } from "../util/dataPlaceholders";
+import { noDataPlaceholder } from "../util/DataPlaceholders";
 
 /******************
  * useHttp -- Hook which reads from given URL and returns the data as json
@@ -27,7 +27,7 @@ const useHttp = url => {
         .catch(err => {
           setIsLoading(false);
         });
-      }
+    }
   }, [url]);
 
   return [isLoading, data];

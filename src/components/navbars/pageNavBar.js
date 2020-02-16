@@ -4,7 +4,7 @@ import { func, number } from "prop-types";
 import Nav from "react-bootstrap/Nav";
 import Pagination from "react-bootstrap/Pagination";
 
-import { LoadingContext } from "../contexts/loadingContext";
+import LoadingContext from "../contexts/LoadingContext";
 
 /******************
  * PageNavBar -- Displays nav bar with a centred set of pagination buttons, also uses functions tied to hooks from parents

@@ -3,9 +3,9 @@ import { arrayOf, object } from "prop-types";
 
 import Row from "react-bootstrap/Row";
 
-import { LoadingContext } from "./contexts/loadingContext";
-import { loadingPlaceholder } from "../util/dataPlaceholders";
-import BeerCard from "./beerCard";
+import LoadingContext from "./contexts/LoadingContext";
+import { loadingPlaceholder } from "../util/DataPlaceholders.js";
+import BeerCard from "./BeerCard";
 
 /******************
  * ProductList -- Maps an array of product data onto product cards

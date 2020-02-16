@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/Inputgroup";
 
-import { LoadingContext } from "../contexts/loadingContext";
+import LoadingContext from "../contexts/LoadingContext";
 
 /******************
  * BeerNavBar -- Displays a lesser nav bar for the beer product page, showing:
@@ -23,10 +23,10 @@ const BeerNavBar = ({ setFilter, page }) => {
     const safeValue = e.target.value
       .replace(/[^0-9a-z-A-Z ]/g, "")
       .replace(/ +/, " ");
-      setInput(safeValue)
+    setInput(safeValue);
   };
 
-  const preventSubmit = (e) => {
+  const preventSubmit = e => {
     e.preventDefault();
     setFilter({ beerName: input });
     setParsedInput(input);
@@ -34,7 +34,11 @@ const BeerNavBar = ({ setFilter, page }) => {
 
   return (
     <Navbar className="justify-content-between">
-      <h2 className="lead">{parsedInput.length > 0 ? "Search Results: \""+parsedInput+"\"" : "Available Beers"}</h2>
+      <h2 className="lead">
+        {parsedInput.length > 0
+          ? 'Search Results: "' + parsedInput + '"'
+          : "Available Beers"}
+      </h2>
       <h2 className="lead">
         <span>{isLoading ? "•" : page} </span>
       </h2>

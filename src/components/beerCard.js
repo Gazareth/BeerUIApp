@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { shape, object, string, number } from "prop-types";
 
-import ProductCard from "./generic/productCard";
-import BeerAbvVol from "./specific/beerAbvVol";
+import ProductCard from "./generic/ProductCard";
+import BeerAbvVol from "./specific/BeerAbvVol";
 
-import { ModalContext } from "./contexts/modalContext";
+import ModalContext from "./contexts/ModalContext";
 
 /******************
- * BeerCard -- Prepares  relevant beer info to display on a productCard:
+ * BeerCard -- Prepares  relevant beer info to display on a ProductCard:
  * - Name (header)
  * - Image
  * - Detail #1 - ABV, VOL

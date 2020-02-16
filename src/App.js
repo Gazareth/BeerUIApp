@@ -2,12 +2,12 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 
 import { useState } from "react";
-import useFetchProducts from "./hooks/fetchProducts";
-import useManagePages from "./hooks/managePages";
+import useFetchProducts from "./hooks/FetchProducts";
+import useManagePages from "./hooks/ManagePages";
 
-import MainNavBar from "./components/navbars/mainNavBar";
-import ProductPage from "./components/productPage";
-import { LoadingContext } from "./components/contexts/loadingContext";
+import MainNavBar from "./components/navbars/MainNavBar";
+import ProductPage from "./components/ProductPage.js";
+import LoadingContext from "./components/contexts/LoadingContext";
 
 export const App = () => {
   const perPage = process.env.REACT_APP_BEERS_PER_PAGE;
